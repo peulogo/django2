@@ -31,7 +31,6 @@ def sign_up_by_django(request):
             repeat_password = form.cleaned_data['repeat_password']
             age = form.cleaned_data['age']
 
-            # Проверка условий
             if password != repeat_password:
                 info['error'] = 'Пароли не совпадают'
             elif age < 18:
@@ -39,14 +38,13 @@ def sign_up_by_django(request):
             elif Buyer.objects.filter(name=username).exists():
                 info['error'] = 'Пользователь уже существует'
             else:
-                # Сохранение нового пользователя в базу данных
                 Buyer.objects.create(name=username, balance=0.0, age=age)
                 info['success'] = f'Приветствуем, {username}!'
-                form = UserRegister()  # Сброс формы после успешной регистрации
+                form = UserRegister()
 
         info['form'] = form
     else:
-        info['form'] = UserRegister()  # Пустая форма при GET запросе
+        info['form'] = UserRegister()
 
     return render(request, 'fifth_task/registration_page.html', info)
 
@@ -58,7 +56,6 @@ def sign_up_by_html(request):
         repeat_password = request.POST.get('repeat_password', '').strip()
         age = request.POST.get('age', '').strip()
 
-        # Проверка условий
         if password != repeat_password:
             info['error'] = 'Пароли не совпадают'
         elif not age.isdigit() or int(age) < 18:
@@ -66,7 +63,6 @@ def sign_up_by_html(request):
         elif Buyer.objects.filter(name=username).exists():
             info['error'] = 'Пользователь уже существует'
         else:
-            # Сохранение нового пользователя в базу данных
             Buyer.objects.create(name=username, balance=0.0, age=int(age))
             info['success'] = f'Приветствуем, {username}!'
 
