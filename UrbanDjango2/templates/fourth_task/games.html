@@ -1,0 +1,31 @@
+{% extends 'fourth_task/menu.html' %}
+
+{% block pagetitle %}
+Игры
+{% endblock %}
+
+{% block pagename %}
+Игры
+{% endblock %}
+
+{% block content %}
+ <ul>
+        {% for game in games %}
+        <li>
+             {{ game.title }} | {{ game.description }}. Стоимость: {{ game.cost }} <button style="display: inline">Купить</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+<a href="{% url 'main_view' %}"
+style="
+  display: inline-block;
+  padding: 10px 15px;
+  background: #f2f2f2;
+  border: 1px solid #000;
+  color: #333;
+  text-decoration: none;
+  text-align: center;"
+>Вернуться обратно</a>
+
+{% endblock %}

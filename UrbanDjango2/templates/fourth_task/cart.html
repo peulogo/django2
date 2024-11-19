@@ -1,0 +1,23 @@
+{% extends 'fourth_task/menu.html' %}
+
+{% block pagetitle %}
+Корзина
+{% endblock %}
+
+{% block pagename %}
+Корзина
+{% endblock %}
+
+{% block content %}
+<h1>Извините, ваша корзина пуста</h1>
+<a href="{% url 'main_view' %}"
+style="
+  display: inline-block;
+  padding: 10px 15px;
+  background: #f2f2f2;
+  border: 1px solid #000;
+  color: #333;
+  text-decoration: none;
+  text-align: center;"
+>Вернуться обратно</a>
+{% endblock %}
